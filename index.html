@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Tarea de Correspondencia</title>
+    
+    <!-- Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        
+        /* Ocultar secciones no activas */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Animación suave para cambio de pestañas */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo hoja de papel para las cartas */
+        .hoja-papel {
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            border-top: 8px solid #065f46; /* Borde verde superior simulando diseño */
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex h-screen overflow-hidden">
+
+    <!-- Sidebar de Navegación -->
+    <aside class="w-64 bg-gray-900 text-white flex flex-col hidden md:flex">
+        <div class="p-6 border-b border-gray-700">
+            <h1 class="text-xl font-bold text-white tracking-wide">
+                <i class="fa-solid fa-graduation-cap text-blue-400 mr-2"></i>Tarea 1
+            </h1>
+            <p class="text-xs text-gray-400 mt-2">Combinación de Correspondencia & Tablas</p>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2">
+            <button onclick="switchTab('inicio')" id="btn-inicio" class="nav-btn w-full flex items-center p-3 rounded-lg bg-blue-600 text-white transition-colors duration-200">
+                <i class="fa-solid fa-house w-6 text-center"></i>
+                <span class="ml-3 font-medium">Inicio / Resumen</span>
+            </button>
+            <button onclick="switchTab('tablas')" id="btn-tablas" class="nav-btn w-full flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors duration-200">
+                <i class="fa-solid fa-table w-6 text-center"></i>
+                <span class="ml-3 font-medium">Tablas Formuladas</span>
+            </button>
+            <button onclick="switchTab('basedatos')" id="btn-basedatos" class="nav-btn w-full flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors duration-200">
+                <i class="fa-solid fa-database w-6 text-center"></i>
+                <span class="ml-3 font-medium">Base de Datos (Excel)</span>
+            </button>
+            <button onclick="switchTab('cartas')" id="btn-cartas" class="nav-btn w-full flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors duration-200">
+                <i class="fa-solid fa-envelope-open-text w-6 text-center"></i>
+                <span class="ml-3 font-medium">20 Cartas Generadas</span>
+            </button>
+        </nav>
+        
+        <div class="p-4 border-t border-gray-700 text-sm text-gray-400 text-center">
+            Alumno: Michael Rodríguez
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        
+        <!-- Navbar Móvil (visible solo en pantallas pequeñas) -->
+        <header class="bg-gray-900 text-white p-4 flex justify-between items-center md:hidden shrink-0">
+            <h1 class="text-lg font-bold"><i class="fa-solid fa-graduation-cap text-blue-400 mr-2"></i>Tarea 1</h1>
+            <select id="mobile-nav" onchange="switchTab(this.value)" class="bg-gray-800 text-white p-2 rounded border border-gray-700 text-sm focus:outline-none">
+                <option value="inicio">Inicio / Resumen</option>
+                <option value="tablas">Tablas Formuladas</option>
+                <option value="basedatos">Base de Datos (Excel)</option>
+                <option value="cartas">20 Cartas Generadas</option>
+            </select>
+        </header>
+
+        <!-- Contenedor scrolleable principal -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-8">
+            
+            <!-- VISTA 1: INICIO -->
+            <section id="inicio" class="tab-content active">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                        <div class="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-full mb-6 mx-auto">
+                            <i class="fa-solid fa-award text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Entrega de Tarea Interactiva</h2>
+                        <p class="text-center text-gray-600 mb-8 text-lg">Bienvenido al portafolio web que agrupa los requerimientos del ejercicio práctico de Microsoft Word y Excel.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center hover:shadow-md transition-shadow">
+                                <i class="fa-solid fa-calculator text-2xl text-indigo-500 mb-3"></i>
+                                <h3 class="font-bold text-gray-800 mb-2">Fórmulas en Word</h3>
+                                <p class="text-sm text-gray-500">Uso de la herramienta <code>=SUM(ABOVE)</code> y cálculos de porcentajes en celdas integradas.</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center hover:shadow-md transition-shadow">
+                                <i class="fa-solid fa-file-excel text-2xl text-green-500 mb-3"></i>
+                                <h3 class="font-bold text-gray-800 mb-2">Base de Datos</h3>
+                                <p class="text-sm text-gray-500">Creación de lista estructurada con 20 clientes, saldos y fechas de vencimiento.</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center hover:shadow-md transition-shadow">
+                                <i class="fa-solid fa-layer-group text-2xl text-orange-500 mb-3"></i>
+                                <h3 class="font-bold text-gray-800 mb-2">Correspondencia masiva</h3>
+                                <p class="text-sm text-gray-500">Vínculo automático para conectar un documento autoubicado de más de 20 páginas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA 2: TABLAS -->
+            <section id="tablas" class="tab-content">
+                <div class="max-w-5xl mx-auto space-y-8">
+                    
+                    <h2 class="text-2xl font-bold text-gray-800 border-b pb-2">Tablas con Fórmulas (Diseño Word)</h2>
+                    
+                    <!-- Tabla 1: Naval -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden border border-gray-200">
+                        <div class="bg-blue-900 text-white p-4">
+                            <h3 class="font-semibold text-lg flex items-center"><i class="fa-solid fa-anchor mr-2 text-blue-300"></i>1. Factura de Ventas de Productos Navales</h3>
+                        </div>
+                        <div class="p-0 md:p-4 overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700">
+                                        <th class="p-3 border-b-2 border-blue-900">Cantidad</th>
+                                        <th class="p-3 border-b-2 border-blue-900">Descripción</th>
+                                        <th class="p-3 border-b-2 border-blue-900">Precio Unit.</th>
+                                        <th class="p-3 border-b-2 border-blue-900">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700">
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">2</td>
+                                        <td class="p-3">Motor fuera de borda 50HP</td>
+                                        <td class="p-3">C$ 1500.00</td>
+                                        <td class="p-3 font-mono">C$ 3000.00</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">6</td>
+                                        <td class="p-3">Chaleco salvavidas</td>
+                                        <td class="p-3">C$ 45.00</td>
+                                        <td class="p-3 font-mono">C$ 270.00</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">1</td>
+                                        <td class="p-3">Brújula magnética</td>
+                                        <td class="p-3">C$ 120.00</td>
+                                        <td class="p-3 font-mono">C$ 120.00</td>
+                                    </tr>
+                                    <tr class="bg-blue-50 font-bold text-blue-900">
+                                        <td class="p-3"></td>
+                                        <td class="p-3"></td>
+                                        <td class="p-3 text-right">TOTAL</td>
+                                        <td class="p-3 font-mono">C$ 3390.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="p-3 text-xs text-gray-500 italic bg-gray-50">Nota de fórmula: Total calculado con =SUM(ABOVE)</div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla 2: Agrónomos -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden border border-gray-200">
+                        <div class="bg-green-800 text-white p-4">
+                            <h3 class="font-semibold text-lg flex items-center"><i class="fa-solid fa-leaf mr-2 text-green-300"></i>2. Cotización de Servicios Agrónomos</h3>
+                        </div>
+                        <div class="p-0 md:p-4 overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700">
+                                        <th class="p-3 border-b-2 border-green-800">Servicio / Producto</th>
+                                        <th class="p-3 border-b-2 border-green-800">Precio Base</th>
+                                        <th class="p-3 border-b-2 border-green-800 text-red-600">Descuento 25%</th>
+                                        <th class="p-3 border-b-2 border-green-800">Precio Final</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700">
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">Administración de finca</td>
+                                        <td class="p-3">C$ 800.00</td>
+                                        <td class="p-3 text-red-500 font-mono">-C$ 200.00</td>
+                                        <td class="p-3 font-mono">C$ 600.00</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">Supervisión de labores</td>
+                                        <td class="p-3">C$ 450.00</td>
+                                        <td class="p-3 text-red-500 font-mono">-C$ 112.50</td>
+                                        <td class="p-3 font-mono">C$ 337.50</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-3">Análisis de suelo</td>
+                                        <td class="p-3">C$ 300.00</td>
+                                        <td class="p-3 text-red-500 font-mono">-C$ 75.00</td>
+                                        <td class="p-3 font-mono">C$ 225.00</td>
+                                    </tr>
+                                    <tr class="bg-green-50 font-bold text-green-900">
+                                        <td class="p-3"></td>
+                                        <td class="p-3"></td>
+                                        <td class="p-3 text-right">TOTAL NETO</td>
+                                        <td class="p-3 font-mono border-t-2 border-green-800">C$ 1162.50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tabla 3: Bicicletas -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden border border-gray-200">
+                        <div class="bg-orange-500 text-white p-4">
+                            <h3 class="font-semibold text-lg flex items-center"><i class="fa-solid fa-bicycle mr-2 text-orange-200"></i>3. Recibo Vertical Detallado de Bicicletas</h3>
+                        </div>
+                        <div class="p-0 md:p-4 overflow-x-auto flex justify-center">
+                            <table class="w-full max-w-md text-left border-collapse border border-gray-200">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700">
+                                        <th class="p-3 border-b-2 border-orange-500 w-2/3">CONCEPTO</th>
+                                        <th class="p-3 border-b-2 border-orange-500 text-right">MONTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700">
+                                    <tr class="border-b border-dashed hover:bg-gray-50">
+                                        <td class="p-3">Casco aerodinámico de montaña</td>
+                                        <td class="p-3 text-right font-mono">C$ 85.00</td>
+                                    </tr>
+                                    <tr class="border-b border-dashed hover:bg-gray-50">
+                                        <td class="p-3">Luces LED recargables</td>
+                                        <td class="p-3 text-right font-mono">C$ 25.00</td>
+                                    </tr>
+                                    <tr class="border-b-2 hover:bg-gray-50">
+                                        <td class="p-3">Bomba de aire portátil</td>
+                                        <td class="p-3 text-right font-mono">C$ 15.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 text-right font-semibold text-sm">Subtotal</td>
+                                        <td class="p-2 text-right font-mono bg-gray-50">C$ 125.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 text-right font-semibold text-sm text-red-500">Descuento 8%</td>
+                                        <td class="p-2 text-right font-mono text-red-500 bg-red-50">-C$ 10.00</td>
+                                    </tr>
+                                    <tr class="bg-orange-50">
+                                        <td class="p-3 text-right font-bold text-orange-800 text-lg">Total a Pagar</td>
+                                        <td class="p-3 text-right font-mono font-bold text-lg text-orange-900 border-t-2 border-orange-500">C$ 115.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- VISTA 3: BASE DE DATOS -->
+            <section id="basedatos" class="tab-content">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-between items-end mb-4">
+                        <h2 class="text-2xl font-bold text-gray-800">Base de Datos (LOS 20.xlsx)</h2>
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded border border-green-400">20 Registros</span>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow border border-gray-200 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr class="bg-gray-800 text-gray-100">
+                                        <th class="p-3 font-semibold border-r border-gray-700 w-16 text-center">ID</th>
+                                        <th class="p-3 font-semibold border-r border-gray-700">Nombre</th>
+                                        <th class="p-3 font-semibold border-r border-gray-700">Apellido</th>
+                                        <th class="p-3 font-semibold border-r border-gray-700 text-right">Saldo (C$)</th>
+                                        <th class="p-3 font-semibold text-center">Fecha de Vencimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="db-table-body" class="text-gray-700">
+                                    <!-- Generado dinámicamente con JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA 4: CARTAS GENERADAS -->
+            <section id="cartas" class="tab-content">
+                <div class="max-w-4xl mx-auto">
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded shadow-sm flex items-start">
+                        <i class="fa-solid fa-circle-info text-yellow-600 mt-1 mr-3 text-lg"></i>
+                        <div>
+                            <h3 class="font-bold text-yellow-800">Simulación de Correspondencia</h3>
+                            <p class="text-sm text-yellow-700 mt-1">Este apartado muestra el resultado final de la combinación de correspondencia en Word. Se ha generado una hoja (carta) independiente y numerada por cada uno de los 20 usuarios de la base de datos de Excel.</p>
+                        </div>
+                    </div>
+
+                    <!-- Controles para navegar las cartas (Paginador visual) -->
+                    <div class="flex flex-wrap gap-2 justify-center mb-8" id="pagination-controls">
+                        <!-- Botones de página generados con JS -->
+                    </div>
+
+                    <!-- Contenedor donde se dibuja la carta actual -->
+                    <div id="hoja-carta-container">
+                        <!-- La carta se inyecta aquí con JS -->
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- LÓGICA Y DATOS EN JAVASCRIPT -->
+    <script>
+        // La Base de Datos de los 20 usuarios
+        const usuarios = [
+            { id: 1, nombre: "María", apellido: "Hurtado", saldo: "1500.00", fecha: "15/10/2026" },
+            { id: 2, nombre: "Omar", apellido: "Pavón", saldo: "840.00", fecha: "15/10/2026" },
+            { id: 3, nombre: "Carlos", apellido: "López", saldo: "450.50", fecha: "15/10/2026" },
+            { id: 4, nombre: "Ana", apellido: "Martínez", saldo: "320.00", fecha: "15/10/2026" },
+            { id: 5, nombre: "Luis", apellido: "García", saldo: "1200.00", fecha: "15/10/2026" },
+            { id: 6, nombre: "Elena", apellido: "Díaz", saldo: "75.00", fecha: "15/10/2026" },
+            { id: 7, nombre: "José", apellido: "Rodríguez", saldo: "900.00", fecha: "15/10/2026" },
+            { id: 8, nombre: "Carmen", apellido: "Ruiz", saldo: "410.00", fecha: "15/10/2026" },
+            { id: 9, nombre: "Pedro", apellido: "Sánchez", saldo: "150.00", fecha: "15/10/2026" },
+            { id: 10, nombre: "Lucía", apellido: "Gómez", saldo: "880.00", fecha: "15/10/2026" },
+            { id: 11, nombre: "Jorge", apellido: "Pérez", saldo: "1050.00", fecha: "15/10/2026" },
+            { id: 12, nombre: "Marta", apellido: "Fernández", saldo: "630.00", fecha: "15/10/2026" },
+            { id: 13, nombre: "Raúl", apellido: "Jiménez", saldo: "200.00", fecha: "15/10/2026" },
+            { id: 14, nombre: "Sofía", apellido: "Vargas", saldo: "110.00", fecha: "15/10/2026" },
+            { id: 15, nombre: "Diego", apellido: "Castro", saldo: "940.00", fecha: "15/10/2026" },
+            { id: 16, nombre: "Laura", apellido: "Ortiz", saldo: "560.00", fecha: "15/10/2026" },
+            { id: 17, nombre: "Mario", apellido: "Silva", saldo: "720.00", fecha: "15/10/2026" },
+            { id: 18, nombre: "Paula", apellido: "Romero", saldo: "330.00", fecha: "15/10/2026" },
+            { id: 19, nombre: "Andrés", apellido: "Morales", saldo: "480.00", fecha: "15/10/2026" },
+            { id: 20, nombre: "Clara", apellido: "Herrera", saldo: "990.00", fecha: "15/10/2026" }
+        ];
+
+        
+        // 1. Lógica de Pestañas (Navegación)
+        function switchTab(tabId) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // Restablecer estilos de botones nav (quitar clase activa)
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('text-gray-300');
+            });
+            
+            // Mostrar contenido objetivo
+            document.getElementById(tabId).classList.add('active');
+            
+            // Si el botón existe (pantallas grandes), aplicarle estilo activo
+            const btn = document.getElementById('btn-' + tabId);
+            if (btn) {
+                btn.classList.remove('text-gray-300');
+                btn.classList.add('bg-blue-600', 'text-white');
+            }
+            
+            // Sincronizar select móvil por si se clickeó sidebar en pantalla grande y luego se encogió
+            const mobileSelect = document.getElementById('mobile-nav');
+            if (mobileSelect) mobileSelect.value = tabId;
+        }
+
+        // 2. Renderizar Base de Datos (Tabla Excel simulada)
+        function renderDatabase() {
+            const tbody = document.getElementById('db-table-body');
+            let html = '';
+            
+            usuarios.forEach((u, index) => {
+                // Filas cebra
+                const rowClass = index % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100';
+                
+                html += `
+                    <tr class="${rowClass} border-b border-gray-200 transition-colors">
+                        <td class="p-3 border-r border-gray-200 text-center font-mono text-gray-500">${u.id}</td>
+                        <td class="p-3 border-r border-gray-200 font-medium">${u.nombre}</td>
+                        <td class="p-3 border-r border-gray-200">${u.apellido}</td>
+                        <td class="p-3 border-r border-gray-200 text-right font-mono text-blue-700">C$ ${u.saldo}</td>
+                        <td class="p-3 text-center text-gray-600"><i class="fa-regular fa-calendar mr-2 text-gray-400"></i>${u.fecha}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // 3. Renderizar las Cartas de Word y la Paginación
+        function renderLetters(pageId) {
+            // Encontrar el usuario
+            const u = usuarios.find(user => user.id === pageId);
+            
+            // HTML de la carta (Membrete + Cuerpo)
+            const cartaHTML = `
+                <div class="hoja-papel p-8 sm:p-12 rounded-b-lg">
+                    <div class="text-center border-b-2 border-green-800 pb-4 mb-6">
+                        <h2 class="text-xl font-bold text-green-900 tracking-wider">HACIENDA EL LIMONAL</h2>
+                        <h3 class="text-sm font-semibold text-gray-600 tracking-widest mt-1">DEPARTAMENTO DE CONTADURÍA PÚBLICA</h3>
+                    </div>
+                    
+                    <div class="text-right text-sm text-gray-600 mb-10 font-medium">
+                        Fecha: 25 de septiembre de 2026
+                    </div>
+                    
+                    <div class="mb-6 text-gray-800">
+                        Estimado/a <span class="font-bold bg-yellow-100 px-1 rounded">${u.nombre} ${u.apellido}</span>,
+                    </div>
+                    
+                    <div class="mb-6 text-gray-800 leading-relaxed text-justify">
+                        Por medio de la presente, nos comunicamos desde el Departamento de Contaduría Pública para notificarle que su estado de cuenta actual refleja un saldo pendiente de <span class="font-bold bg-yellow-100 px-1 rounded">C$ ${u.saldo}</span>. 
+                    </div>
+                    
+                    <div class="mb-12 text-gray-800 leading-relaxed text-justify">
+                        Le solicitamos amablemente regularizar este monto en nuestras oficinas antes de la fecha límite del <span class="font-bold bg-yellow-100 px-1 rounded">${u.fecha}</span>. Agradecemos de antemano su atención a esta notificación y quedamos a su disposición para cualquier consulta.
+                    </div>
+                    
+                    <div class="text-center text-gray-800 mt-16">
+                        <div class="w-48 border-t border-gray-800 mx-auto mb-2"></div>
+                        <div class="font-bold">Michael Antonio Rodríguez Condega</div>
+                        <div class="text-sm text-gray-600">Administrador</div>
+                    </div>
+                    
+                    <div class="text-center text-xs text-gray-400 mt-16 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-file-word mr-1"></i> Página ${u.id} de 20
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('hoja-carta-container').innerHTML = cartaHTML;
+            
+            // Actualizar botones de paginación
+            renderPaginationControls(pageId);
+        }
+
+        function renderPaginationControls(activeId) {
+            const container = document.getElementById('pagination-controls');
+            let html = '';
+            
+            // Botón Anterior
+            if(activeId > 1) {
+                html += `<button onclick="renderLetters(${activeId - 1})" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded text-sm transition font-medium">&laquo; Ant</button>`;
+            }
+
+            // Los 20 números
+            usuarios.forEach(u => {
+                const isActive = u.id === activeId;
+                const btnClass = isActive 
+                    ? 'bg-blue-600 text-white shadow font-bold' 
+                    : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-100';
+                
+                html += `<button onclick="renderLetters(${u.id})" class="w-8 h-8 rounded text-sm transition-colors ${btnClass}">${u.id}</button>`;
+            });
+            
+            // Botón Siguiente
+            if(activeId < 20) {
+                html += `<button onclick="renderLetters(${activeId + 1})" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded text-sm transition font-medium">Sig &raquo;</button>`;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // 4. Inicialización al cargar la página
+        window.onload = () => {
+            renderDatabase();
+            renderLetters(1); // Cargar la carta #1 por defecto
+        };
+    </script>
+</body>
+</html>
